@@ -1,0 +1,15 @@
+name: weldx
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - setuptools_scm
+  - pip
+  # Notebook + Plotting
+  - jupyterlab=2
+  - ipykernel
+  - matplotlib=3.3.2
+  - ipympl=0.5.8
+  - nodejs
+  - weldx=0.3.1
