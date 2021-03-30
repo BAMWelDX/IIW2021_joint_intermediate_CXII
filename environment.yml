@@ -12,6 +12,5 @@ dependencies:
   - matplotlib=3.3.2
   - ipympl=0.5.8
   - nodejs
-  - scipy<1.6
   - asdf=2.7.3
-  - weldx=0.3.1
+  - weldx=0.3.3
