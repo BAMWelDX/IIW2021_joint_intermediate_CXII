@@ -3,8 +3,9 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
+
 import weldx
-from weldx import SpatialData, Q_
+from weldx import Q_, SpatialData
 from weldx.geometry import Geometry, LinearHorizontalTraceSegment, Trace
 
 _DEFAUL_FIGWIDTH = 10
@@ -55,19 +56,16 @@ def welding_wire_geo_data(radius, length, cross_section_resolution=8):
     )
 
 
-def plot_signal(signal, ref_time=None, limits=None, ax=None):
+def plot_signal(signal, name, ref_time=None, limits=None, ax=None):
     """Plot a single weldx signal."""
     if not ax:
         _, ax = plt.subplots(figsize=(_DEFAUL_FIGWIDTH, 6))
 
-    data = signal.data.data
-    time = weldx.util.to_pandas_time_index(data.time)
-    if ref_time is None:
-        ref_time = data.time[0].values
-    time = weldx.util.pandas_time_delta_to_quantity(time - ref_time)
+    data = signal.data
+    time = weldx.util.pandas_time_delta_to_quantity(data.time)
 
     ax.plot(time.m, data.data)
-    ax.set_ylabel(f"{signal.data.name} / {signal.unit}")
+    ax.set_ylabel(f"{name} / {signal.unit}")
     ax.set_xlabel("time / s")
     ax.grid()
 
@@ -79,11 +77,13 @@ def plot_signal(signal, ref_time=None, limits=None, ax=None):
 
 def plot_measurements(measurement_data, limits=None, ref_time=None):
     n = len(measurement_data)
-    fig, ax = plt.subplots(nrows=n, sharex="all", figsize=(_DEFAUL_FIGWIDTH, 2.5*n))
+    fig, ax = plt.subplots(nrows=n, sharex="all", figsize=(_DEFAUL_FIGWIDTH, 2.5 * n))
 
     for i, measurement in enumerate(measurement_data):
-        last_signal = measurement.measurement_chain.data_processors[-1].output_signal
-        plot_signal(last_signal, ax=ax[i], limits=limits, ref_time=ref_time)
+        last_signal = measurement.measurement_chain.signals[-1]
+        plot_signal(
+            last_signal, measurement.name, ax=ax[i], limits=limits, ref_time=ref_time
+        )
         ax[i].set_xlabel(None)
 
     ax[-1].set_xlabel("time / s")
@@ -108,11 +108,10 @@ def ipympl_style(fig, toolbar=True):
         fig.canvas.header_visible = False
         fig.canvas.resizable = False
         fig.tight_layout()
-        fig.canvas.toolbar_position = 'right'
+        fig.canvas.toolbar_position = "right"
         fig.canvas.toolbar_visible = toolbar
     except Exception as ex:
         pass
-
 
 
 def plot_gmaw(gmaw, t):
@@ -123,7 +122,7 @@ def plot_gmaw(gmaw, t):
     pars = gmaw.parameters
     n = len(pars)
 
-    fig, ax = plt.subplots(nrows=n, sharex="all", figsize=(_DEFAUL_FIGWIDTH, 2*n))
+    fig, ax = plt.subplots(nrows=n, sharex="all", figsize=(_DEFAUL_FIGWIDTH, 2 * n))
     for i, k in enumerate(pars):
         parplot(pars[k], t, k, ax[i])
     ax[-1].set_xlabel(f"time / s")
