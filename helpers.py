@@ -64,7 +64,7 @@ def plot_signal(signal, name, ref_time=None, limits=None, ax=None):
     data = signal.data
     time = weldx.util.pandas_time_delta_to_quantity(data.time)
 
-    ax.plot(time.m, data.data)
+    ax.plot(time.m, data.data.m)
     ax.set_ylabel(f"{name} / {signal.unit}")
     ax.set_xlabel("time / s")
     ax.grid()
