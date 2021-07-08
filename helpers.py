@@ -56,7 +56,7 @@ def welding_wire_geo_data(radius, length, cross_section_resolution=8):
     )
 
 
-def plot_signal(signal, name, ref_time=None, limits=None, ax=None):
+def plot_signal(signal, name, limits=None, ax=None):
     """Plot a single weldx signal."""
     if not ax:
         _, ax = plt.subplots(figsize=(_DEFAUL_FIGWIDTH, 6))
@@ -75,15 +75,13 @@ def plot_signal(signal, name, ref_time=None, limits=None, ax=None):
     ipympl_style(ax.figure)
 
 
-def plot_measurements(measurement_data, limits=None, ref_time=None):
+def plot_measurements(measurement_data, limits=None):
     n = len(measurement_data)
     fig, ax = plt.subplots(nrows=n, sharex="all", figsize=(_DEFAUL_FIGWIDTH, 2.5 * n))
 
     for i, measurement in enumerate(measurement_data):
         last_signal = measurement.measurement_chain.signals[-1]
-        plot_signal(
-            last_signal, measurement.name, ax=ax[i], limits=limits, ref_time=ref_time
-        )
+        plot_signal(last_signal, measurement.name, ax=ax[i], limits=limits)
         ax[i].set_xlabel(None)
 
     ax[-1].set_xlabel("time / s")
