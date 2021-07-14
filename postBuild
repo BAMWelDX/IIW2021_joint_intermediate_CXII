@@ -1,5 +1,5 @@
 #!/bin/bash
 
 # Install required matplotlib JupyterLab extensions
-jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager k3d --debug
+jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager@2.0.0 jupyter-matplotlib@0.7.4 jupyterlab-datawidgets@7.0.0 k3d@2.9.3 --debug
 jupyter lab build --minimize=False --debug

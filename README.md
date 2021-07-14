@@ -2,6 +2,10 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/BAMWelDX/IIW_2021_joint_intermediate_CXII/main?urlpath=lab/tree/iiw2021_CXII_fabry_cagtay_01.ipynb)
 [![Documentation](https://readthedocs.org/projects/weldx/badge/?version=v0.3.1)](https://weldx.readthedocs.io/en/v0.3.1/?badge=v0.3.1) 
 
+📣📣📣\
+**An updated version of this talk has been given at the 2021 IIW Annual Assembly, you can find the updated repository [here](https://github.com/BAMWelDX/IIW2021_AA_CXII) .**\
+📣📣📣
+
 Repository providing code and datasets accompanying **IIW Doc.XII-2464-2021: WelDX - progress report on the welding data exchange format**
 
 Talk held online at the IIW 2021 joint intermediate meeting Comm. I, IV, XII & SG212 meeting on 30.-31.03.2021 .
