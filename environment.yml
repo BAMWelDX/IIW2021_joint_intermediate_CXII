@@ -12,5 +12,7 @@ dependencies:
   - matplotlib=3.3.2
   - ipympl=0.5.8
   - nodejs
+  - k3d=2.9.3
+  # pinned asdf & weldx versions
   - asdf=2.7.3
   - weldx=0.3.3
